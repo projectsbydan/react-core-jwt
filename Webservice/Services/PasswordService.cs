@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Webservice.Interfaces;
 
-namespace CheckWebApp.Services
+namespace Webservice.Services
 {
     public class PasswordService : IPasswordService
     {
