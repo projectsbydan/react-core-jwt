@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CheckWebApp.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Webservice.Database;
+using Webservice.Interfaces;
 
 namespace Webservice
 {
@@ -35,6 +37,8 @@ namespace Webservice
                     options.UseSqlServer(Configuration.GetConnectionString("ReactAuthJwt"));
 
                 });
+
+            services.AddScoped<IPasswordService, PasswordService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
