@@ -9,10 +9,10 @@ using Swashbuckle.AspNetCore.Swagger;
 using System.Collections.Generic;
 using Webservice.Database;
 using Webservice.Interfaces;
-using Webservice.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.AspNetCore.Mvc.Formatters;
 
 namespace Webservice
 {
@@ -28,7 +28,10 @@ namespace Webservice
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc(options =>
+            {
+                options.OutputFormatters.RemoveType<HttpNoContentOutputFormatter>();
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddDbContext<DatabaseContext>(
                 options =>
