@@ -2,6 +2,7 @@ import * as React from "react";
 import { render } from "react-dom";
 import CreateUser from "./Components/CreateUser";
 import SigninUser from "./Components/SigninUser";
+import AuthentificatedApi from "./Components/AuthentificatedApi";
 
 const App = () => (
   <div style={{ display: "flex" }}>
@@ -11,7 +12,7 @@ const App = () => (
       <SigninUser />
     </div>
     <div style={{ flex: 1 }}>
-      <h2>User api</h2>
+      <AuthentificatedApi />
     </div>
   </div>
 );
