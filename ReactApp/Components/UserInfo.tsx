@@ -1,5 +1,4 @@
 import * as React from "react";
-import { AuthentificationConsumer } from "../Contexts/Authentification";
 
 export interface UserInfoProps {}
 
@@ -10,17 +9,7 @@ class UserInfo extends React.Component<UserInfoProps, UserInfoState> {
     super(props);
   }
   render() {
-    return (
-      <AuthentificationConsumer>
-        {value => {
-          return (
-            <div style={{ margin: "30px auto" }}>
-              User email: {value.userLogin.email}
-            </div>
-          );
-        }}
-      </AuthentificationConsumer>
-    );
+    return <div style={{ margin: "30px auto" }}>User email: kommt noch</div>;
   }
 }
 

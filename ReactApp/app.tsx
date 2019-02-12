@@ -3,12 +3,10 @@ import { render } from "react-dom";
 import CreateUser from "./Components/CreateUser";
 import SigninUser from "./Components/SigninUser";
 import AuthentificatedApi from "./Components/AuthentificatedApi";
-import { AuthentificationProvider } from "./Contexts/Authentification";
-import { userInfo } from "os";
 import UserInfo from "./Components/UserInfo";
 
 const App = () => (
-  <AuthentificationProvider>
+  <React.Fragment>
     <div style={{ display: "flex" }}>
       {/*never ever do inline styles*/}
       <CreateUser />
@@ -20,7 +18,7 @@ const App = () => (
       </div>
     </div>
     <UserInfo />
-  </AuthentificationProvider>
+  </React.Fragment>
 );
 
 render(<App />, document.getElementById("root"));
