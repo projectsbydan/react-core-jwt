@@ -1,20 +1,13 @@
-import * as React from "react";
+import React, { useContext } from "react";
+import { LoginContext } from "../Contexts/login/loginContext";
 
-export interface UserInfoProps {}
+export const UserInfo = () => {
+  const loginContext = useContext(LoginContext);
 
-export interface UserInfoState {}
-
-class UserInfo extends React.Component<UserInfoProps, UserInfoState> {
-  constructor(props: UserInfoProps) {
-    super(props);
-  }
-  render() {
-    return (
-      <div style={{ margin: "30px auto", textAlign: "center" }}>
-        User email: kommt noch
-      </div>
-    );
-  }
-}
-
-export default UserInfo;
+  return (
+    <div style={{ margin: "30px auto", textAlign: "center" }}>
+      User email:{" "}
+      {loginContext.login ? loginContext.login.emailAddress : "not logged in"}
+    </div>
+  );
+};

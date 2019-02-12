@@ -1,9 +1,10 @@
-import * as React from "react";
+import React from "react";
 import { render } from "react-dom";
 import { CreateUser } from "./Components/CreateUser";
 import { SignInUser } from "./Components/SigninUser";
 import { CallApi } from "./Components/CallApi";
-import UserInfo from "./Components/UserInfo";
+import { UserInfo } from "./Components/UserInfo";
+import { withLogin } from "./Contexts/login/loginWrapper";
 
 const App = () => (
   <React.Fragment>
@@ -21,4 +22,4 @@ const App = () => (
   </React.Fragment>
 );
 
-render(<App />, document.getElementById("root"));
+render(withLogin(<App />), document.getElementById("root"));

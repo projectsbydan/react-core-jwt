@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { UsersApi } from "../Generated/api";
+import { LoginContext } from "../Contexts/login/loginContext";
 
 export const SignInUser = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const loginContext = useContext(LoginContext);
 
   const handleSignin = async () => {
     setLoading(true);
@@ -16,8 +18,10 @@ export const SignInUser = () => {
         password: password
       });
       setMessage(JSON.stringify(result));
+      loginContext.setLogin(result);
     } catch (ex) {
       setMessage(JSON.stringify(ex.statusText));
+      loginContext.setLogin(null);
     }
     setLoading(false);
   };
