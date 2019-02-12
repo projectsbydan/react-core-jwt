@@ -1,71 +1,55 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { UsersApi } from "../Generated/api";
 
-export interface CreateUserProps {}
+export const CreateUser = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
 
-export interface CreateUserState {
-  email: string;
-  password: string;
-  isLoading: boolean;
-  failedMessage: "";
-}
-
-class CreateUser extends React.Component<CreateUserProps, CreateUserState> {
-  constructor(props: CreateUserProps) {
-    super(props);
-    this.state = {
-      email: "",
-      password: "",
-      isLoading: false,
-      failedMessage: ""
-    };
-  }
-  handleCreate = async (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    event.preventDefault();
+  const handleCreate = async () => {
+    setLoading(true);
     const api = new UsersApi({ basePath: "https://localhost:5001" });
     try {
-      await api.addUser({
-        emailAddress: this.state.email,
-        password: this.state.password
+      const newUser = await api.addUser({
+        emailAddress: email,
+        password: password
       });
+
+      setMessage(JSON.stringify(newUser));
     } catch (ex) {
-      this.setState({ failedMessage: ex.message });
+      setMessage(ex.message);
     }
+    setLoading(false);
   };
 
-  render() {
-    return (
-      <div style={{ flex: 1 }}>
-        <h2>Create user</h2>
-        <input
-          type="text"
-          value={this.state.email}
-          onChange={event => this.setState({ email: event.target.value })}
-        />
-        <br />
-        <br />
-        <input
-          type="password"
-          value={this.state.password}
-          onChange={event => this.setState({ password: event.target.value })}
-        />
-        <br />
-        <br />
-        {this.state.isLoading ? (
-          <span>Loading...</span>
-        ) : (
-          <button type="button" onClick={this.handleCreate}>
-            Create!
-          </button>
-        )}
-        <br />
-        <br />
-        {this.state.failedMessage}
-      </div>
-    );
-  }
-}
-
-export default CreateUser;
+  return (
+    <div style={{ flex: 1 }}>
+      <h2>Create user</h2>
+      <input
+        type="text"
+        value={email}
+        onChange={event => setEmail(event.target.value)}
+      />
+      <br />
+      <br />
+      <input
+        type="password"
+        value={password}
+        onChange={event => setPassword(event.target.value)}
+      />
+      <br />
+      <br />
+      {loading ? (
+        <span>Loading...</span>
+      ) : (
+        <button type="button" onClick={handleCreate}>
+          Create!
+        </button>
+      )}
+      <br />
+      <br />
+      {message}
+    </div>
+  );
+};

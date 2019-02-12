@@ -1,7 +1,7 @@
 import * as React from "react";
 import { render } from "react-dom";
-import CreateUser from "./Components/CreateUser";
-import SigninUser from "./Components/SigninUser";
+import { CreateUser } from "./Components/CreateUser";
+import { SignInUser } from "./Components/SigninUser";
 import { CallApi } from "./Components/CallApi";
 import UserInfo from "./Components/UserInfo";
 
@@ -11,7 +11,7 @@ const App = () => (
       {/*never ever do inline styles*/}
       <CreateUser />
       <div style={{ flex: 1 }}>
-        <SigninUser />
+        <SignInUser />
       </div>
       <div style={{ flex: 1 }}>
         <CallApi />
