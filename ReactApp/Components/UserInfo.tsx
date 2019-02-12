@@ -9,7 +9,11 @@ class UserInfo extends React.Component<UserInfoProps, UserInfoState> {
     super(props);
   }
   render() {
-    return <div style={{ margin: "30px auto" }}>User email: kommt noch</div>;
+    return (
+      <div style={{ margin: "30px auto", textAlign: "center" }}>
+        User email: kommt noch
+      </div>
+    );
   }
 }
 

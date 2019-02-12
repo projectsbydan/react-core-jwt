@@ -7,6 +7,7 @@ export interface CreateUserState {
   email: string;
   password: string;
   isLoading: boolean;
+  failedMessage: "";
 }
 
 class CreateUser extends React.Component<CreateUserProps, CreateUserState> {
@@ -15,7 +16,8 @@ class CreateUser extends React.Component<CreateUserProps, CreateUserState> {
     this.state = {
       email: "",
       password: "",
-      isLoading: false
+      isLoading: false,
+      failedMessage: ""
     };
   }
   handleCreate = async (
@@ -23,10 +25,14 @@ class CreateUser extends React.Component<CreateUserProps, CreateUserState> {
   ) => {
     event.preventDefault();
     const api = new UsersApi({ basePath: "https://localhost:5001" });
-    await api.addUser({
-      emailAddress: this.state.email,
-      password: this.state.password
-    });
+    try {
+      await api.addUser({
+        emailAddress: this.state.email,
+        password: this.state.password
+      });
+    } catch (ex) {
+      this.setState({ failedMessage: ex.message });
+    }
   };
 
   render() {
@@ -54,6 +60,9 @@ class CreateUser extends React.Component<CreateUserProps, CreateUserState> {
             Create!
           </button>
         )}
+        <br />
+        <br />
+        {this.state.failedMessage}
       </div>
     );
   }
