@@ -2,7 +2,7 @@ import * as React from "react";
 import { render } from "react-dom";
 import CreateUser from "./Components/CreateUser";
 import SigninUser from "./Components/SigninUser";
-import AuthentificatedApi from "./Components/AuthentificatedApi";
+import { CallApi } from "./Components/CallApi";
 import UserInfo from "./Components/UserInfo";
 
 const App = () => (
@@ -14,7 +14,7 @@ const App = () => (
         <SigninUser />
       </div>
       <div style={{ flex: 1 }}>
-        <AuthentificatedApi />
+        <CallApi />
       </div>
     </div>
     <UserInfo />

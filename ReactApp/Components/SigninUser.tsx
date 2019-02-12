@@ -1,5 +1,5 @@
 import * as React from "react";
-import { UsersApi } from "../Generated";
+import { UsersApi } from "../Generated/api";
 export interface SigninUserProps {}
 
 export interface SigninUserState {
